@@ -47,6 +47,8 @@ function createSeat(x, z) {
 }
 
 createSeat(0, 2)
+createSeat(-1, 2)
+createSeat(1, 2)
 
 camera.position.set(0, 3, 6)
 camera.lookAt(0, 0, 0)
