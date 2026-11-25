@@ -17,7 +17,21 @@ const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
 
-camera.position.z = 5
+const floorGeometry = new THREE.PlaneGeometry(10, 10)
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 })
+const floor = new THREE.Mesh(floorGeometry, floorMaterial)
+floor.rotation.x = -Math.PI / 2
+floor.position.y = -1
+scene.add(floor)
+
+const light = new THREE.DirectionalLight(0xffffff, 2)
+light.position.set(3, 5, 4)
+scene.add(light)
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.5))
+
+camera.position.set(0, 3, 6)
+camera.lookAt(0, 0, 0)
 
 function animate(){
   requestAnimationFrame(animate)
