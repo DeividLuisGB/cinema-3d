@@ -12,11 +12,6 @@ scene.background = new THREE.Color(0x3344aa)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const cube = new THREE.Mesh(geometry, material)
-scene.add(cube)
-
 const floorGeometry = new THREE.PlaneGeometry(10, 10)
 const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 })
 const floor = new THREE.Mesh(floorGeometry, floorMaterial)
@@ -30,14 +25,34 @@ scene.add(light)
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.5))
 
+const screenGeometry = new THREE.BoxGeometry(8, 4, 0.2)
+const screenMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+const screen = new THREE.Mesh(screenGeometry, screenMaterial)
+screen.position.set(0, 1, -5)
+scene.add(screen)
+
+const backWallGeometry = new THREE.PlaneGeometry(10, 6)
+const backWallMaterial = new THREE.MeshStandardMaterial({ color: 0x222233 })
+const backWall = new THREE.Mesh(backWallGeometry, backWallMaterial)
+backWall.position.set(0, 2, -5.2)
+scene.add(backWall)
+
+function createSeat(x, z) {
+  const geometry = new THREE.BoxGeometry(0.8, 0.6, 0.8)
+  const material = new THREE.MeshStandardMaterial({ color: 0x8b1a1a })
+  const seat = new THREE.Mesh(geometry, material)
+  seat.position.set(x, -0.7, z)
+  scene.add(seat)
+  return seat
+}
+
+createSeat(0, 2)
+
 camera.position.set(0, 3, 6)
 camera.lookAt(0, 0, 0)
 
-function animate(){
+function animate() {
   requestAnimationFrame(animate)
-
-  cube.rotation.x += 0.01
-  cube.rotation.y += 0.01
 
   renderer.render(scene, camera)
 }
