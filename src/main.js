@@ -53,9 +53,8 @@ function createSeat(x, z) {
   return seat
 }
 
-
-for (let i = 0; i < 3; i++) {
-  createSeat(i - 1, 2)
+for (let i = 0; i < 5; i++) {
+  createSeat(i - 2, 2)
 }
 
 //  5. animação =====
